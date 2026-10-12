@@ -1,4 +1,4 @@
-// Quietly music library — local files stay in this browser session.
+
 class Song {
   constructor(file) {
     this.file = file;
@@ -46,7 +46,7 @@ function getSongs() {
   return songs;
 }
 function getActiveSongs() {
-  // The Playlists overview shows playlist cards only; tracks appear after a playlist is opened.
+  
   if (activeView === "playlists" && activePlaylistId === null) return [];
 
   if (activeView === "favorites" && activePlaylistId === null) {
@@ -89,7 +89,7 @@ function addSong(file) {
     if (activePlaylist) addToPlaylist(activePlaylist, song);
   }
 
-  // Read duration without changing the main player.
+  
   const probe = new Audio();
   probe.preload = "metadata";
   probe.src = song.url;
@@ -299,8 +299,7 @@ function renderPlaylists() {
   empty.style.display = playlists.length ? "none" : "block";
 }
 function renderList() {
-  // Visualize only the current view's linked sequence: a single playlist when
-  // one is open, the library on Home, and no combined sequence on the overview.
+
   const songs = getActiveSongs();
   listVisual.innerHTML = "";
 
@@ -448,7 +447,7 @@ function buildShuffleQueue(pool, excludeCurrent = true) {
   }
 }
 function playNext(direction) {
-  // Navigate within the visible collection/playlist when possible.
+ 
   const pool = getActiveSongs();
   if (!pool.length) {
     showToast("This collection has no tracks yet.");
@@ -478,7 +477,7 @@ function playNext(direction) {
       if (!shuffleQueue.length) {
         if (repeatMode === 1) buildShuffleQueue(pool);
         else {
-          // At the end of a shuffled queue, start a fresh cycle for a friendlier UX.
+        
           buildShuffleQueue(pool);
           if (!shuffleQueue.length && pool.length === 1) {
             playSong(pool[0]);
@@ -492,7 +491,7 @@ function playNext(direction) {
         target = randomSong(candidates);
       }
     } else {
-      // Previous in shuffle mode goes to a different random track.
+    
       const candidates = pool.filter((song) => song.id !== currentSong.id);
       target = candidates.length ? randomSong(candidates) : currentSong;
     }
@@ -750,7 +749,7 @@ document.getElementById("sortSelect").addEventListener("change", (event) => {
   renderSongs();
 });
 
-// Drag audio files onto the track panel to import them quickly.
+
 const trackPanel = document.getElementById("trackPanel");
 ["dragenter", "dragover"].forEach((type) => {
   trackPanel.addEventListener(type, (event) => {
