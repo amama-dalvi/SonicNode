@@ -40,15 +40,9 @@ The list also maintains:
 ### Visual Representation
 
 
-HEAD
-  |
-  v
-NULL <- [Song A] <-> [Song B] <-> [Song C] -> NULL
-                                              ^
-                                              |
-                                             TAIL
-
-
+HEAD-> NULL <- [Song A] <-> [Song B] <-> [Song C] -> NULL <-TAIL
+                                              
+                                        
 This structure supports traversal in both directions.
 
 ### Core Operations
